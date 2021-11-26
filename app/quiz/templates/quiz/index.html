@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Quiz page</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz/style.css' %}">
+</head>
+<body>
+    <div class="pure-g centered">
+        <div class="pure-u-1 mt-2">
+            <form action="{% url 'quiz:index' %}" method="post" class="pure-form">
+            {% csrf_token %}
+                {% if message %}<div>{{ message }}</div>{% endif %}
+                <h3>Enter capital for country: {{ country }}</h3>
+                <div class="pure-control-group">
+                    <input type="text" value="" name="capital">
+                    <input type="hidden" name="country" value="{{ country }}">
+                    <input type="submit" value="Check" class="pure-button pure-button-primary">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
